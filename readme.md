@@ -2,4 +2,4 @@
 
 型のトレーニング用リポジトリです。
 
-- 練習問題01: [ビジネスルールの実装](https://github.com/todokr/scala-kata/blob/master/scala-kata-1/)
+- 練習問題01: [ビジネスルールの実装](https://github.com/todokr/scala-kata/blob/master/scala-kata-1/readme.md)
