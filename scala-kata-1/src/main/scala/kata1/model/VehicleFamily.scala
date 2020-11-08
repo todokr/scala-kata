@@ -15,5 +15,5 @@ object VehicleFamily {
   case object Motorcycle extends VehicleFamily
 
   /** その他 */
-  case object Other
+  case object Other extends VehicleFamily
 }
