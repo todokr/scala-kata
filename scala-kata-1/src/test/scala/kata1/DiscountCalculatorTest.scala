@@ -15,14 +15,29 @@ class DiscountCalculatorTest extends AnyFunSuite {
 
   private val calculator = new DiscountCalculator
 
-  test("朝夕平日割引 1回") {
-    val driver = Driver(countPerMonth = 1)
+  test("割引なし: 平日 ~ 5:59") {
+    val driver = Driver(countPerMonth = 10)
     val drive = HighwayDrive(
       driver = driver,
       vehicleFamily = VehicleFamily.Standard,
       areaType = AreaType.Rural,
-      enteredAt = LocalDateTime.of(2016, 3, 31, 23, 0),
-      exitedAt = LocalDateTime.of(2016, 4, 1, 6, 30)
+      enteredAt = LocalDateTime.of(2020, 11, 5, 5, 30),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 5, 59)
+    )
+
+    val actual = calculator.calc(drive)
+    val expected = DiscountPercentage(0)
+
+    assertResult(expected)(actual)
+  }
+  test("割引なし: 平日 9:01 ~ ") {
+    val driver = Driver(countPerMonth = 10)
+    val drive = HighwayDrive(
+      driver = driver,
+      vehicleFamily = VehicleFamily.Standard,
+      areaType = AreaType.Rural,
+      enteredAt = LocalDateTime.of(2020, 11, 5, 9, 1),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 9, 30)
     )
 
     val actual = calculator.calc(drive)
@@ -31,14 +46,49 @@ class DiscountCalculatorTest extends AnyFunSuite {
     assertResult(expected)(actual)
   }
 
-  test("朝夕平日割引 4回") {
+  test("割引なし: 平日 ~ 16:59") {
+    val driver = Driver(countPerMonth = 10)
+    val drive = HighwayDrive(
+      driver = driver,
+      vehicleFamily = VehicleFamily.Standard,
+      areaType = AreaType.Rural,
+      enteredAt = LocalDateTime.of(2020, 11, 5, 16, 30),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 16, 59)
+    )
+
+    val actual = calculator.calc(drive)
+    val expected = DiscountPercentage(0)
+
+    assertResult(expected)(actual)
+  }
+  test("割引なし: 平日 20:01 ~ ") {
+    val driver = Driver(countPerMonth = 10)
+    val drive = HighwayDrive(
+      driver = driver,
+      vehicleFamily = VehicleFamily.Standard,
+      areaType = AreaType.Rural,
+      enteredAt = LocalDateTime.of(2020, 11, 5, 20, 1),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 20, 30)
+    )
+
+    val actual = calculator.calc(drive)
+    val expected = DiscountPercentage(0)
+
+    assertResult(expected)(actual)
+  }
+
+  test("朝夕平日割引: 平日 5:30 ~ 6:00") {}
+
+  test("平日 5:30 ~ 6:00") {}
+
+  test("朝夕平日割引: 4回") {
     val driver = Driver(countPerMonth = 4)
     val drive = HighwayDrive(
       driver = driver,
       vehicleFamily = VehicleFamily.Standard,
       areaType = AreaType.Rural,
-      enteredAt = LocalDateTime.of(2016, 3, 31, 23, 0),
-      exitedAt = LocalDateTime.of(2016, 4, 1, 6, 30)
+      enteredAt = LocalDateTime.of(2020, 11, 5, 5, 30),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 6, 30)
     )
 
     val actual = calculator.calc(drive)
@@ -53,8 +103,8 @@ class DiscountCalculatorTest extends AnyFunSuite {
       driver = driver,
       vehicleFamily = VehicleFamily.Standard,
       areaType = AreaType.Rural,
-      enteredAt = LocalDateTime.of(2016, 3, 31, 23, 0),
-      exitedAt = LocalDateTime.of(2016, 4, 1, 6, 30)
+      enteredAt = LocalDateTime.of(2020, 11, 5, 5, 30),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 6, 30)
     )
 
     val actual = calculator.calc(drive)
@@ -69,12 +119,12 @@ class DiscountCalculatorTest extends AnyFunSuite {
       driver = driver,
       vehicleFamily = VehicleFamily.Standard,
       areaType = AreaType.Rural,
-      enteredAt = LocalDateTime.of(2016, 3, 31, 23, 0),
-      exitedAt = LocalDateTime.of(2016, 4, 1, 6, 30)
+      enteredAt = LocalDateTime.of(2020, 11, 5, 5, 30),
+      exitedAt = LocalDateTime.of(2020, 11, 5, 6, 30)
     )
 
     val actual = calculator.calc(drive)
-    val expected = DiscountPercentage(0)
+    val expected = DiscountPercentage(50)
 
     assertResult(expected)(actual)
   }
@@ -90,7 +140,7 @@ class DiscountCalculatorTest extends AnyFunSuite {
     )
 
     val actual = calculator.calc(drive)
-    val expected = DiscountPercentage(50)
+    val expected = DiscountPercentage(30)
 
     assertResult(expected)(actual)
   }
@@ -106,7 +156,7 @@ class DiscountCalculatorTest extends AnyFunSuite {
     )
 
     val actual = calculator.calc(drive)
-    val expected = DiscountPercentage(50)
+    val expected = DiscountPercentage(30)
 
     assertResult(expected)(actual)
   }
