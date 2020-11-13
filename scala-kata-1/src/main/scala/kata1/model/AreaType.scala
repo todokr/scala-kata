@@ -5,7 +5,7 @@ sealed trait AreaType
 
 object AreaType {
 
-  /** 都市部 */
+  /** 都市部（東京・大阪近郊） */
   case object Urban extends AreaType
 
   /** 地方部 */
