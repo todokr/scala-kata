@@ -58,10 +58,17 @@ class DiscountCalculator {
 
 ### model パッケージ
 
-- Driver: ドライバー。「今月に何回高速道路を利用したか」の情報を持っている
-- HighwayDrive: 1 ドライバーの、1 回の高速道路の走行記録
-- VehicleFamily: 車種
-- AreaType: 高速道路のエリア
+- HighwayDrive: 1 ドライバーの、 1 回の高速道路の走行記録。これを元に割引率を計算する。
+  - Driver: ドライバー。「今月に何回高速道路を利用したか」の情報を持っている
+  - VehicleFamily: 車種
+    - Standard: 普通車
+    - Mini: 軽自動車
+    - Motorcycle: 二輪車
+    - Other: その他
+  - AreaType: 高速道路のエリア
+    - Urban: 都市部（東京・大阪近郊）
+    - Rural: 地方部
+
 - DiscountPercentage: 割引率のパーセンテージ
 
 ### util パッケージ
