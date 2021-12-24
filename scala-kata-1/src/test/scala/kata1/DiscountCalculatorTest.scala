@@ -173,11 +173,43 @@ class DiscountCalculatorTest extends AnyFunSuite {
     assertResult(expected)(actual)
   }
 
-  test("休日朝は休日割引") {
+  test("休日朝は休日割引 普通車: 20%") {
     val driver = Driver(countPerMonth = 10)
     val drive = HighwayDrive(
       driver = driver,
       vehicleFamily = VehicleFamily.Standard,
+      areaType = AreaType.Rural,
+      enteredAt = LocalDateTime.of(2021, 12, 25, 5, 30), // Sat
+      exitedAt = LocalDateTime.of(2021, 12, 25, 6, 30) // Sat
+    )
+
+    val actual = calculator.calc(drive)
+    val expected = DiscountPercentage(20)
+
+    assertResult(expected)(actual)
+  }
+
+  test("休日割引 軽自動車: 30%") {
+    val driver = Driver(countPerMonth = 10)
+    val drive = HighwayDrive(
+      driver = driver,
+      vehicleFamily = VehicleFamily.Mini,
+      areaType = AreaType.Rural,
+      enteredAt = LocalDateTime.of(2021, 12, 25, 5, 30), // Sat
+      exitedAt = LocalDateTime.of(2021, 12, 25, 6, 30) // Sat
+    )
+
+    val actual = calculator.calc(drive)
+    val expected = DiscountPercentage(30)
+
+    assertResult(expected)(actual)
+  }
+
+  test("休日割引 二輪車: 30%") {
+    val driver = Driver(countPerMonth = 10)
+    val drive = HighwayDrive(
+      driver = driver,
+      vehicleFamily = VehicleFamily.Mini,
       areaType = AreaType.Rural,
       enteredAt = LocalDateTime.of(2021, 12, 25, 5, 30), // Sat
       exitedAt = LocalDateTime.of(2021, 12, 25, 6, 30) // Sat
