@@ -8,16 +8,14 @@ import HolidayUtils._
 object HolidayRule extends DiscountRule {
   import VehicleFamily._
 
-  // 割引を適用できる車種
-  private val targetVehicleType: Set[VehicleFamily] =
+  // 休日割引を適用できる車種
+  private val targetVehicle: Set[VehicleFamily] =
     Set(Standard, Mini, Motorcycle)
 
-  override def isApplicable(drive: HighwayDrive): Boolean = {
-    val dayCondition = isHoliday(drive.enteredAt.toLocalDate) || isHoliday(drive.exitedAt.toLocalDate)
-    val isDiscountVehicle = targetVehicleType.contains(drive.vehicleFamily)
-    val isDiscountArea = drive.areaType == AreaType.Rural
-    dayCondition && isDiscountVehicle && isDiscountArea
-  }
+  override def isApplicable(drive: HighwayDrive): Boolean =
+    (isHoliday(drive.enteredAt.toLocalDate) || isHoliday(drive.exitedAt.toLocalDate)) &&
+    targetVehicle.contains(drive.vehicleFamily) &&
+    drive.areaType == AreaType.Rural
 
   override def applicableDiscount(drive: HighwayDrive): DiscountPercentage =
     DiscountPercentage(30)
