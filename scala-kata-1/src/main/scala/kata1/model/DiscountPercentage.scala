@@ -13,3 +13,8 @@ case class DiscountPercentage(value: Int)
     else 0
   }
 }
+
+object DiscountPercentage {
+
+  val Zero: DiscountPercentage = DiscountPercentage(0)
+}

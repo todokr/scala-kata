@@ -5,7 +5,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +48,7 @@ public class HolidayUtils {
 
     static {
         try {
-            File cacheFile = new File("target/basic.ics");
+            File cacheFile = new File("scala-kata-1/target/basic.ics");
             URL url = cacheFile.exists()? cacheFile.toURI().toURL() : new URL("https://calendar.google.com/calendar/ical/ja.japanese%23holiday%40group.v.calendar.google.com/public/basic.ics");
 
             try (InputStream in = url.openConnection().getInputStream();
