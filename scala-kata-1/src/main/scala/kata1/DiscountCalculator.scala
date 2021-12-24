@@ -5,10 +5,13 @@ import kata1.rule._
 
 /** 高速道路の走行記録から割引率を計算する */
 class DiscountCalculator {
-
-  private val rules: Set[DiscountRule] =
-    Set(MorningOfWeekdayRule, HolidayRule, MidnightRule)
+  import DiscountCalculator.rules
 
   def calc(drive: HighwayDrive): DiscountPercentage =
-    rules.map(rule => rule.discountPercentage(drive)).max
+    rules.map(_.discountPercentage(drive)).max
+}
+
+object DiscountCalculator {
+  private val rules: Set[DiscountRule] =
+    Set(MorningOfWeekdayRule, HolidayRule, MidnightRule)
 }
