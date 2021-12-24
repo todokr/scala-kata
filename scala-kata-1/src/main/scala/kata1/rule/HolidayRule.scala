@@ -17,6 +17,11 @@ object HolidayRule extends DiscountRule {
     targetVehicle.contains(drive.vehicleFamily) &&
     drive.areaType == AreaType.Rural
 
-  override def applicableDiscount(drive: HighwayDrive): DiscountPercentage =
-    DiscountPercentage(30)
+  override def applicableDiscount(drive: HighwayDrive): DiscountPercentage = {
+    val percentage = drive.vehicleFamily match {
+      case Mini | Motorcycle => 30
+      case _                 => 20
+    }
+    DiscountPercentage(percentage)
+  }
 }

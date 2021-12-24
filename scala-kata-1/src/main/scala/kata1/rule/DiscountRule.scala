@@ -12,6 +12,6 @@ trait DiscountRule {
   /** 走行記録に対して割引が適用可能か  */
   protected def isApplicable(drive: HighwayDrive): Boolean
 
-  /** 割引が適用可能な際の割引率  */
+  /** 割引が適用可能な際の割引率はいくらか */
   protected def applicableDiscount(drive: HighwayDrive): DiscountPercentage
 }
