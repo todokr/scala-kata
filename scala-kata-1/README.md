@@ -77,7 +77,12 @@ class DiscountCalculator {
 
 - HolidayUtils: 休日の判定用。 `isHoliday(d: LocalDate): Boolean` と `printHolidays(): Unit` が public。
 
-## (参考) 2つの期間が重なり合うかどうかを判定する
+## FAQ
+
+### 「X時〜Y時に、入口または出口料金所を通過すること」はどう判定する？
+`HighwayDrive` の `enteredAt (入口料金所の通過時間)` や `exitedAt（出口料金所の通過時間)` からいい感じに判定してください。
+
+### 2つの期間が重なり合うかどうかを判定するには？
 
 2つの期間 `A〜B` と `X〜Y` が重なっているかどうかを判定したい場合は、
 
