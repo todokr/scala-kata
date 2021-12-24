@@ -114,9 +114,9 @@ class DiscountCalculator {
 
 - HolidayUtils: 休日の判定用。 `isHoliday(d: LocalDate): Boolean` と `printHolidays(): Unit` が public。
 
-## 2 つの期間が重なり合うかどうかを判定する
+## (参考) 2つの期間が重なり合うかどうかを判定する
 
-2 つの期間 `A〜B` と `X〜Y` が重なっているかどうかを判定したい場合は、
+2つの期間 `A〜B` と `X〜Y` が重なっているかどうかを判定したい場合は、
 
 ```
 X <= B && A <= Y
