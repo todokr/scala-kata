@@ -40,10 +40,12 @@
 
 ## 問題
 
-上記の業務ルールに従って、割引率を計算する `DiscountCalculator` を、`DiscountCalculatorTest` をパスするかつ、  
-**割引のパターンが増えたとしても理解しやすく、メンテナンスが楽なように** 実装してください。
+上記の業務ルールに従って、割引率を計算する `DiscountCalculator` を、
 
-class や trait、object などを新しく作ったり、既存の model にメソッドを新しく追加して OK です。
+- `DiscountCalculatorTest` をパスするように
+- なるべく **割引のパターンが増えたとしても理解しやすく、メンテナンスが楽なように**
+
+実装してください。
 
 
 
@@ -52,6 +54,8 @@ class DiscountCalculator {
     def calc(drive: HighwayDrive): DiscountPercentage = ???
 }
 ```
+
+class や trait、object などを新しく作ったり、既存の model にメソッドを新しく追加して OK です。
 
 ## 既存のコードについて
 
