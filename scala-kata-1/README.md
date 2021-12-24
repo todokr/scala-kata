@@ -1,8 +1,6 @@
 # KATA01 - Discount Logic of Electronic Toll Collection System
 
-https://www.driveplaza.com/etc/dis/
-
-ここにある、高速道路の ETC 割引の計算ロジックを実装します。
+高速道路の ETC 割引の計算ロジックを実装します。
 
 - 走行記録は、24 時間を超えないものとします。
 - 複数の割引が適用できる場合、 **最も割引率が高い割引が 1 つだけ** 適用されます。
